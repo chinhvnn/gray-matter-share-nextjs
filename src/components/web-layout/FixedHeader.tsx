@@ -2,14 +2,14 @@ import React from 'react'
 
 export default function FixedHeader() {
   return (
-    <div className="fixed-header fixed h-12 bg-slate-500 left-0 top-0 w-full">
+    <div className="fixed-header fixed h-14 bg-slate-500 left-0 top-0 w-full flex">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="menu">
+        <div className="menu w-40">
           <div>
             <i className="fa-solid fa-bars"></i>
           </div>
         </div>
-        <div className="search">
+        <div className="search flex-1 px-6">
           <form className="max-w-lg mx-auto">
             <div className="flex">
               <label
@@ -116,7 +116,7 @@ export default function FixedHeader() {
             </div>
           </form>
         </div>
-        <div className="user flex">
+        <div className="user flex justify-end w-40">
           <div className="recharge">Nap xu</div>
           <div className="user-dropdown">User</div>
         </div>
