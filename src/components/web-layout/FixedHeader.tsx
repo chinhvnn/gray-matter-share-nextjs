@@ -1,4 +1,5 @@
 import React from 'react'
+import Dropdown from '../common/Dropdown'
 
 export default function FixedHeader() {
   return (
@@ -118,7 +119,10 @@ export default function FixedHeader() {
         </div>
         <div className="user flex justify-end w-40">
           <div className="recharge">Nap xu</div>
-          <div className="user-dropdown">User</div>
+          <div className="user-dropdown">
+            <div className="h-10 w-10 rounded-full bg-amber-300 cursor-pointer"></div>
+            <Dropdown menu={[{ id: 1, label: 'test' }]}>Test</Dropdown>
+          </div>
         </div>
       </div>
     </div>
