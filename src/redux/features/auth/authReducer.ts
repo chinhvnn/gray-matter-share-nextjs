@@ -1,19 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { fetchAuth, fetchLogin } from './authThunk'
+import { API_RESULT } from '@/common/constants/constant'
 
 // Define a type for the slice state
 interface AuthState {
   isLoading: boolean
-  userLogin: any
+  isLoadingLogin: boolean
   loginErrMsg: string
+  userLogin: any
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
   isLoading: true,
-  userLogin: {},
+  isLoadingLogin: false,
   loginErrMsg: '',
+  userLogin: {},
 }
 
 export const counterSlice = createSlice({
@@ -23,14 +26,19 @@ export const counterSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchLogin.pending, (state) => {
-      state.isLoading = true
+      state.isLoadingLogin = true
     })
     builder.addCase(fetchLogin.fulfilled, (state, action) => {
-      state.userLogin = action.payload.data
-      state.isLoading = false
+      if (action.payload.result === API_RESULT.SUCCESS) {
+        state.userLogin = action.payload.data
+      } else {
+        state.loginErrMsg = action.payload.message || 'Error login'
+      }
+      state.isLoadingLogin = false
     })
-    builder.addCase(fetchLogin.rejected, (state) => {
-      state.isLoading = false
+    builder.addCase(fetchLogin.rejected, (state, action) => {
+      state.loginErrMsg = 'Network errors'
+      state.isLoadingLogin = false
     })
 
     builder.addCase(fetchAuth.pending, (state) => {

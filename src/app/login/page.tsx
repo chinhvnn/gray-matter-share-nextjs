@@ -11,6 +11,7 @@ export default function LoginPage() {
   const dispatch = useAppDispatch()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const [loginErrMsg, setLoginErrMsg] = useState('')
   const authReducer = useAppSelector((state) => state.auth)
 
   const onSubmitLogin = (event: FormEvent<HTMLFormElement>) => {
@@ -23,6 +24,10 @@ export default function LoginPage() {
       return redirect('/')
     }
   }, [authReducer.userLogin])
+
+  useEffect(() => {
+    setLoginErrMsg(authReducer.loginErrMsg)
+  }, [authReducer.loginErrMsg])
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -45,8 +50,8 @@ export default function LoginPage() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            <div className="error-msg text-red-500" hidden={!authReducer.loginErrMsg}>
-              Errors: {authReducer.loginErrMsg}
+            <div className="error-msg text-red-500" hidden={!loginErrMsg}>
+              Errors: {loginErrMsg}
             </div>
             <form method="post" className="space-y-4 md:space-y-6" onSubmit={onSubmitLogin}>
               <div>
@@ -63,9 +68,12 @@ export default function LoginPage() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-amber-800 focus:border-amber-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required
-                  disabled={authReducer.isLoading}
+                  disabled={authReducer.isLoadingLogin}
                   value={email}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setEmail(e.target.value)
+                    setLoginErrMsg('')
+                  }}
                 />
               </div>
               <div>
@@ -83,9 +91,12 @@ export default function LoginPage() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-amber-800 focus:border-amber-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   autoComplete="on"
-                  disabled={authReducer.isLoading}
+                  disabled={authReducer.isLoadingLogin}
                   value={password}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setPassword(e.target.value)
+                    setLoginErrMsg('')
+                  }}
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -96,7 +107,7 @@ export default function LoginPage() {
                       aria-describedby="remember"
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-amber-800 dark:ring-offset-gray-800"
-                      disabled={authReducer.isLoading}
+                      disabled={authReducer.isLoadingLogin}
                     />
                   </div>
                   <div className="ml-3 text-sm">
@@ -108,19 +119,19 @@ export default function LoginPage() {
                 <a
                   href="#"
                   className={`text-sm font-medium text-amber-800 hover:underline dark:text-amber-700
-                    ${authReducer.isLoading ? 'pointer-events-none' : ''}
+                    ${authReducer.isLoadingLogin ? 'pointer-events-none' : ''}
                   `}
                 >
                   Forgot password?
                 </a>
               </div>
               <button
-                disabled={authReducer.isLoading}
+                disabled={authReducer.isLoadingLogin}
                 className={`w-full text-white bg-amber-800  focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-800 dark:focus:ring-amber-300
-                  ${authReducer.isLoading ? '' : 'hover:bg-amber-700  dark:hover:bg-amber-600'}
+                  ${authReducer.isLoadingLogin ? '' : 'hover:bg-amber-700  dark:hover:bg-amber-600'}
                 `}
               >
-                {authReducer.isLoading ? (
+                {authReducer.isLoadingLogin ? (
                   <div className="text-gray-400">
                     <i className="fa-solid fa-spinner animate-spin mr-2"></i>Loading...
                   </div>
@@ -133,7 +144,7 @@ export default function LoginPage() {
                 <a
                   href="#"
                   className={`font-medium text-amber-800 hover:underline dark:text-amber-500
-                    ${authReducer.isLoading ? 'pointer-events-none' : ''}
+                    ${authReducer.isLoadingLogin ? 'pointer-events-none' : ''}
                   `}
                 >
                   Sign up

@@ -9,7 +9,7 @@ export default function middleware(req: NextRequest) {
   const isAuthenticated = !!req.headers.get('cookie')?.replace(`${TOKEN_KEY}=`, '')
 
   if (!isAuthenticated && privateRoute.includes(req.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL('/web', req.url))
+    return NextResponse.redirect(new URL('/login', req.url))
   }
 
   if (req.nextUrl.pathname === '/') {
