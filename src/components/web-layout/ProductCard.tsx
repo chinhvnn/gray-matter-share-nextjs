@@ -23,7 +23,7 @@ export default function ProductCard() {
       >
         <div className="top-product-card">
           <div className="h-36">
-            <Image width={150} height={150} src="/next.svg" alt={''} />
+            {/* <Image width={150} height={150} src="/next.svg" alt={''} /> */}
           </div>
           <div className="static-view px-3 pb-3 pt-1">
             <div className="view-status flex rounded-md overflow-hidden">
