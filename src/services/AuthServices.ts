@@ -8,5 +8,5 @@ export const login = async ({ email, password }: any) => {
 }
 
 export const getAuthUser = async () => {
-  return await axiosInstance.get('admin/users/me')
+  return await axiosInstance.get('admin/auth')
 }

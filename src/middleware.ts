@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { TOKEN_KEY } from './config/axios'
 
-const privateRoute: string[] = ['/login'] // require authentication
+const privateRoute: string[] = ['/dashboard'] // require authentication
 
 const protectRoute: string[] = [] // require user role
 
 export default function middleware(req: NextRequest) {
-  console.log('111', req.nextUrl.pathname)
+  const isAuthenticated = !!req.headers.get('cookie')?.replace(`${TOKEN_KEY}=`, '')
 
-  if (!privateRoute.includes(req.nextUrl.pathname)) {
+  if (!isAuthenticated && privateRoute.includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL('/web', req.url))
   }
 
@@ -19,5 +20,5 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/login'],
+  matcher: ['/', '/login', '/dashboard'],
 }

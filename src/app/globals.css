@@ -22,6 +22,24 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.content-wrapper {
+  min-height: 100vh;
+}
+
+.content_wrapper__auth-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 32px; /* Need a specific value to work */
+  height: 32px; /* Need a specific value to work */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

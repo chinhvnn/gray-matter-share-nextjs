@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function FixedHeader() {
   return (
-    <div className="fixed-header fixed h-14 bg-slate-500 left-0 top-0 w-full flex">
+    <div className="fixed-header z-40 fixed h-14 bg-slate-500 left-0 top-0 w-full flex">
       <div className="container mx-auto flex items-center justify-between">
         <div className="menu w-40">
           <div>

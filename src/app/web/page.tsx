@@ -1,11 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { authStore } from '../../mobx/store/AuthStore'
-import { observer } from 'mobx-react-lite'
 import ProductCard from '@/components/web-layout/ProductCard'
 
-export default observer(function WebHome() {
+export default function WebHome() {
   return (
     <div>
       <section>
@@ -24,4 +22,4 @@ export default observer(function WebHome() {
       </section>
     </div>
   )
-})
+}

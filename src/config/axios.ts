@@ -1,3 +1,4 @@
+import { cookie } from '@/utils/helper'
 import axios from 'axios'
 export const TOKEN_KEY = 'auth-token'
 
@@ -14,7 +15,13 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const token = `Bearer ${localStorage.getItem(TOKEN_KEY)}`
+    let token
+    try {
+      // if (window !== undefined) {
+      //   token = `${window.localStorage.getItem(TOKEN_KEY)}`
+      // }
+      token = cookie.get(TOKEN_KEY)
+    } catch (error) {}
     if (config?.headers) {
       config.headers.Authorization = token
     }

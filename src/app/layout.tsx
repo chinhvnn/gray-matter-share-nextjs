@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
-import Link from 'next/link'
 
 import './globals.css'
+import StoreProvider from '@/components/StoreProvider'
+import ContentWrapper from '@/components/ContentWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +31,11 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <StoreProvider>
+          <ContentWrapper>{children}</ContentWrapper>
+        </StoreProvider>
+      </body>
       <Script src="flowbite-2.3.0.min.js"></Script>
     </html>
   )
