@@ -9,10 +9,12 @@ export default function WebLayout({
   children: React.ReactNode
 }>) {
   return (
-    <main className="container mx-auto bg-white shadow-md p-4 min-h-[calc(100vh-3rem)] mt-12 flex flex-col">
-      <FixedHeader />
-      <div className="content flex-1">{children}</div>
+    <div className="content-wrapper-web">
+      <main className="container mx-auto bg-white shadow-md p-4 min-h-[calc(100vh-3rem-12rem)] mt-12 flex flex-col">
+        <FixedHeader />
+        <div className="content flex-1">{children}</div>
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }
