@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Footer from '../../components/web-layout/Footer'
-import FixedHeader from '../../components/web-layout/FixedHeader'
+import Footer from '../../components/web/Footer'
+import FixedHeader from '../../components/web/FixedHeader'
 
 export default function WebLayout({
   children,

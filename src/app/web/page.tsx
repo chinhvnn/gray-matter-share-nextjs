@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import ProductCard from '@/components/web-layout/ProductCard'
+import ProductCard from '@/components/web/product/ProductCard'
 
 export default function WebHome() {
   return (

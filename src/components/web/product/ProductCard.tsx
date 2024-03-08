@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import React, { RefObject } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function ProductCard() {
   const refProductCardFloatView: RefObject<HTMLDivElement> = React.createRef()
+  const router = useRouter()
 
   const onMouseOverTopProductCard = (event: React.MouseEvent) => {
     refProductCardFloatView.current?.classList.remove('hidden')
@@ -22,7 +24,7 @@ export default function ProductCard() {
         onMouseLeave={onMouseLeaveTopProductCard}
       >
         <div className="top-product-card">
-          <div className="h-36">
+          <div className="h-36" onClick={() => router.push('/dashboard')}>
             {/* <Image width={150} height={150} src="/next.svg" alt={''} /> */}
           </div>
           <div className="static-view px-3 pb-3 pt-1">
@@ -60,7 +62,7 @@ export default function ProductCard() {
             </div>
           </div>
         </div>
-        <div className="category px-3 line-clamp-2 text-yellow-300 flex-grow">
+        <div className="category px-3 line-clamp-2 text-amber-800 flex-grow">
           <i className="fa-solid fa-bookmark"></i>
           <span className="ml-2 font-semibold">React js</span>
         </div>
