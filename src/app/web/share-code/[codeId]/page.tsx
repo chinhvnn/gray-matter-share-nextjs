@@ -1,20 +1,36 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 
 import TickIcon from '@/assets/icon/tick.svg'
 import RatingStar from '@/components/common/RatingStar'
 import ProductCard from '@/components/web/product/ProductCard'
 import Comment from '@/components/web/product/Comment'
+import { Modal } from 'antd'
 
 export default function ShareCode() {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false)
+
+  const showDownloadModal = () => {
+    setIsDownloadModalOpen(true)
+  }
+
+  const handleOk = () => {
+    setIsDownloadModalOpen(false)
+  }
+
+  const handleCancel = () => {
+    setIsDownloadModalOpen(false)
+  }
+
   return (
     <div className="product-detail">
       <section className="flex flex-wrap mt-4 p-3 border shadow-md bg-white">
-        <div className="image w-full sm:w-4/12 xl:w-3/12 mb-3 bg-gray-300 overflow-hidden">
+        <div className="image w-full md:w-4/12 xl:w-3/12 mb-3 bg-gray-300 overflow-hidden">
           {/* <div className="w-80 h-80 bg-gray-300"></div> */}
         </div>
-        <div className="product-detail w-full sm:w-8/12 xl:w-6/12 sm:pl-8 xl:px-8 mb-3">
+        <div className="product-detail w-full md:w-8/12 xl:w-6/12 sm:pl-8 xl:px-8 mb-3">
           <div className="product-name font-semibold text-xl">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit adipisci, molestiae
             ipsam eius modi assumenda ratione, natus voluptatibus debitis voluptates accusamus animi
@@ -61,10 +77,13 @@ export default function ShareCode() {
               </div>
             </div>
             <div className="download-info flex-shrink">
-              <div className="download-button mb-3 w-36 rounded-md border border-green-700 p-3 cursor-pointer bg-lime-600 text-xl font-bold text-white hover:bg-lime-700 transition-colors text-center">
+              <div
+                className="download-button mb-3 w-36 rounded-md border border-green-700 p-2 cursor-pointer bg-lime-600 text-xl font-bold text-white hover:bg-lime-700 transition-colors text-center"
+                onClick={showDownloadModal}
+              >
                 Download
               </div>
-              <div className="view-demo w-36 rounded-md border border-green-700 p-3 cursor-pointer bg-white text-xl font-bol font-bold hover:bg-gray-300 hover:text-green-800 transition-colors text-center">
+              <div className="view-demo w-36 rounded-md border border-green-700 p-2 cursor-pointer bg-white text-xl font-bol font-bold hover:bg-gray-300 hover:text-green-800 transition-colors text-center">
                 View Demo
               </div>
             </div>
@@ -130,6 +149,41 @@ export default function ShareCode() {
           <ProductCard />
         </div>
       </section>
+      <Modal
+        title={<span className="text-xl text-gray-600 ">Download detail</span>}
+        open={isDownloadModalOpen}
+        onCancel={handleCancel}
+        footer={null}
+        width={600}
+      >
+        <div className="user mb-8 rounded-sm border p-2">
+          <span className="user-name mr-3">Chinh (Chinh@gmail.com)</span>
+          <span className="user-coin">
+            <span>Coin:</span>
+            <span className="font-bold text-green-600 ml-1">{100}</span>
+          </span>
+        </div>
+        <div className="note my-3 text-center text-red-700">123</div>
+        <div className="download-verify font-bold">
+          <div className="total-coin mb-3 flex items-center">
+            <div className="w-1/2 text-right">Current coin:</div>
+            <div className="text-lg text-green-600 ml-3">1000</div>
+          </div>
+          <div className="download-fee mb-3 flex items-center">
+            <div className="w-1/2 text-right">Download fee:</div>
+            <div className="text-lg text-green-600 ml-3">-1000</div>
+          </div>
+          <div className="after-coin mb-8 flex items-center">
+            <div className="w-1/2 text-right">Total:</div>
+            <div className="text-lg text-green-600 ml-3">1000</div>
+          </div>
+          <div className="flex justify-center">
+            <span className="p-3 rounded-md text-lg font-bold bg-amber-400 hover:bg-amber-500 cursor-pointer transition-colors">
+              Agree & Download
+            </span>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
