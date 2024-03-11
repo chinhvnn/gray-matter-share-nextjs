@@ -2,39 +2,46 @@
 
 import { Dropdown, MenuProps, Space } from 'antd'
 import React from 'react'
-
-import { useAppSelector } from '@/hooks/useRedux'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const items: MenuProps['items'] = [
-  {
-    label: (
-      <Link href="/dashboard" className="font-semibold">
-        Dashboard
-      </Link>
-    ),
-    key: '0',
-  },
-  {
-    type: 'divider',
-  },
-  {
-    label: <Link href="/user">User</Link>,
-    key: '1',
-  },
-  {
-    label: <Link href="/profile">Profile</Link>,
-    key: '2',
-  },
-  {
-    label: <Link href="/logout">Logout</Link>,
-    key: '3',
-  },
-]
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
+import { fetchLogout } from '@/redux/features/auth/authThunk'
 
 export default function FixedHeader() {
+  const dispatch = useAppDispatch()
   const authReducer = useAppSelector((state) => state.auth)
+
+  const onLogout = () => {
+    dispatch(fetchLogout())
+  }
+
+  const items: MenuProps['items'] = [
+    {
+      label: (
+        <Link href="/dashboard" className="font-semibold">
+          Dashboard
+        </Link>
+      ),
+      key: '0',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: <Link href="/user">User</Link>,
+      key: '1',
+    },
+    {
+      label: <Link href="/profile">Profile</Link>,
+      key: '2',
+    },
+    {
+      label: <span>Logout</span>,
+      onClick: onLogout,
+      key: '3',
+    },
+  ]
 
   return (
     <div className="fixed-header z-40 fixed h-14 bg-gray-100 left-0 top-0 w-full flex px-3 border-b border-gray-300 shadow-md">
@@ -60,12 +67,12 @@ export default function FixedHeader() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="2"
+                  strokeWidth="2"
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                   />
                 </svg>

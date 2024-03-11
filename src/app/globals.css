@@ -22,8 +22,8 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.content-wrapper {
-  min-height: 100vh;
+.content-wrapper-web {
+  min-height: calc(100vh - 3.5rem);
 }
 
 .content_wrapper__auth-loading {

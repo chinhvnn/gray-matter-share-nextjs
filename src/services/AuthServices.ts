@@ -10,3 +10,7 @@ export const login = async ({ email, password }: any) => {
 export const getAuthUser = async () => {
   return await axiosInstance.get('admin/auth')
 }
+
+export const logout = async () => {
+  return await axiosInstance.post('admin/logout', {})
+}

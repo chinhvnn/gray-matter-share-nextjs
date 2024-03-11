@@ -1,14 +1,16 @@
-'use client'
-
 import Image from 'next/image'
 import ProductCard from '@/components/web/product/ProductCard'
+import { getDictionary } from '@/lang/dictionaries'
+import { cookie } from '@/utils/helper'
 
-export default function WebHome() {
+export default async function WebHome() {
+  const dict = await getDictionary(cookie.get('NEXT_LANG') || 'en')
+
   return (
     <div>
-      <section>
-        <div className="section-title my-3 p-2 text-2xl font-semibold border-b border-amber-700">
-          HOT
+      <section className="bg-white mt-4">
+        <div className="section-title my-3 p-2 text-2xl font-semibold uppercase border-b border-amber-700">
+          {dict.section.hot}
         </div>
         <div className="section-content">
           <div className="product-list flex flex-wrap">

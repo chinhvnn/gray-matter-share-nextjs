@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { fetchAuth, fetchLogin } from './authThunk'
+import { fetchAuth, fetchLogin, fetchLogout } from './authThunk'
 import { API_RESULT } from '@/common/constants/constant'
 
 // Define a type for the slice state
@@ -49,6 +49,19 @@ export const counterSlice = createSlice({
       state.isLoading = false
     })
     builder.addCase(fetchAuth.rejected, (state) => {
+      state.isLoading = false
+    })
+
+    builder.addCase(fetchLogout.pending, (state) => {
+      state.isLoading = true
+    })
+    builder.addCase(fetchLogout.fulfilled, (state, action) => {
+      // if (action.payload.result === API_RESULT.SUCCESS)
+      state.userLogin = {}
+      state.isLoading = false
+    })
+    builder.addCase(fetchLogout.rejected, (state) => {
+      state.userLogin = {}
       state.isLoading = false
     })
   },

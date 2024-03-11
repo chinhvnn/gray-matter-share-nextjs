@@ -6,6 +6,7 @@ import { cookie } from '@/utils/helper'
 
 export const AuthAction = {
   fetchLogin: 'auth/fetchLogin',
+  fetchLogout: 'auth/fetchLogout',
   fetchAuth: 'auth/fetchAuth',
 }
 
@@ -28,4 +29,12 @@ export const fetchLogin = createAsyncThunk(
 export const fetchAuth = createAsyncThunk(AuthAction.fetchAuth, async () => {
   const { data } = await authService.getAuthUser()
   return data.data
+})
+
+export const fetchLogout = createAsyncThunk(AuthAction.fetchLogout, async () => {
+  const { data } = await authService.logout()
+  try {
+    cookie.remove(TOKEN_KEY)
+  } catch (error) {}
+  return data
 })

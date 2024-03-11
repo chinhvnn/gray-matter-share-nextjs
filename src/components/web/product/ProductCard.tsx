@@ -1,6 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import React, { RefObject } from 'react'
 import { useRouter } from 'next/navigation'
+import RatingStar from '@/components/common/RatingStar'
 
 export default function ProductCard() {
   const refProductCardFloatView: RefObject<HTMLDivElement> = React.createRef()
@@ -24,11 +27,11 @@ export default function ProductCard() {
         onMouseLeave={onMouseLeaveTopProductCard}
       >
         <div className="top-product-card">
-          <div className="h-36" onClick={() => router.push('/dashboard')}>
+          <div className="h-36 cursor-pointer" onClick={() => router.push('web/share-code/123')}>
             {/* <Image width={150} height={150} src="/next.svg" alt={''} /> */}
           </div>
           <div className="static-view px-3 pb-3 pt-1">
-            <div className="view-status flex rounded-md overflow-hidden">
+            <div className="view-status flex rounded-md overflow-hidden mb-3">
               <div className="view-count flex justify-around w-1/2 p-1 bg-yellow-200 border-r-2 border-white">
                 <div className="icon">
                   <i className="fa-regular fa-eye"></i>
@@ -42,13 +45,7 @@ export default function ProductCard() {
                 <div className="value">0</div>
               </div>
             </div>
-            <div className="star text-yellow-300">
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-star"></i>
-            </div>
+            <RatingStar rating={5} />
           </div>
           <div
             className="float-view absolute top-0 right-0 hidden flex-col text-2xl text-center p-3"
