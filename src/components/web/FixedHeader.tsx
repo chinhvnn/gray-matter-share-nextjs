@@ -44,7 +44,7 @@ export default function FixedHeader() {
   ]
 
   return (
-    <div className="fixed-header z-40 fixed h-14 bg-gray-100 left-0 top-0 w-full flex px-3 border-b border-gray-300 shadow-md">
+    <div className="fixed-header z-40 fixed h-14 bg-gray-100 left-0 top-0 w-full flex px-5 border-b border-gray-300 shadow-md">
       <div className="container mx-auto flex items-center justify-between">
         {/* <div className="menu w-40">
           <div className="cursor-pointer">

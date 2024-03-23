@@ -8,7 +8,7 @@ export const login = async ({ email, password }: any) => {
 }
 
 export const getAuthUser = async () => {
-  return await axiosInstance.get('admin/auth')
+  return await axiosInstance.post('admin/auth')
 }
 
 export const logout = async () => {

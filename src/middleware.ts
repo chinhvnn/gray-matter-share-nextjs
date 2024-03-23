@@ -14,7 +14,7 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
-  if (req.nextUrl.pathname === '/') {
+  if (req.nextUrl.pathname === '/' || (req.nextUrl.pathname === '/login' && isAuthenticated)) {
     return NextResponse.redirect(new URL('/web', req.url))
   }
 
