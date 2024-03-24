@@ -1,12 +1,36 @@
 'use client'
 
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
+
+import { BreadCrumbsItems } from '@/common/types'
 
 export default function BreadCrumbs() {
   const params = useParams()
   const pathName = usePathname()
+  const [breadItems, setBreadItems] = useState<any[]>([])
+
+  useEffect(() => {
+    if (pathName !== '/web') {
+      const breadList = pathName
+        .split('/')
+        .filter((item) => item && item !== 'web')
+        .map((title, index, arr) => {
+          const link = [...new Array(index + 1)].reduce((link, current, currentIndex) => {
+            return (link += `/${arr[currentIndex]}`)
+          }, '')
+          return {
+            title: BreadCrumbsItems[title] || 'Item',
+            link,
+            isLast: arr.length - 1 === index,
+          }
+        })
+      setBreadItems(breadList)
+    } else {
+      setBreadItems([])
+    }
+  }, [pathName])
 
   return (
     <nav
@@ -31,53 +55,40 @@ export default function BreadCrumbs() {
             Home
           </Link>
         </li>
-        <li>
-          <div className="flex items-center">
-            <svg
-              className="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 "
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <a
-              href="#"
-              className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
-            >
-              Templates
-            </a>
-          </div>
-        </li>
-        <li aria-current="page">
-          <div className="flex items-center">
-            <svg
-              className="rtl:rotate-180  w-3 h-3 mx-1 text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-              Flowbite
-            </span>
-          </div>
-        </li>
+        {breadItems.length > 0 &&
+          breadItems.map((item, index, arr) => (
+            <li key={item}>
+              <div className="flex items-center">
+                <svg
+                  className="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 "
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 6 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 9 4-4-4-4"
+                  />
+                </svg>
+                {item.isLast ? (
+                  <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
+                    {item.title}
+                  </span>
+                ) : (
+                  <Link
+                    href={`/web${item.link}`}
+                    className="ms-1 text-sm font-medium dark:text-gray-400 dark:hover:text-white text-gray-700 hover:text-blue-600 md:ms-2"
+                  >
+                    {item.title}
+                  </Link>
+                )}
+              </div>
+            </li>
+          ))}
       </ol>
     </nav>
   )
