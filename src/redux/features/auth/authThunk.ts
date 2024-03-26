@@ -19,6 +19,7 @@ export const fetchLogin = createAsyncThunk(
         // if (typeof window !== undefined) {
         //   window.localStorage.setItem(TOKEN_KEY, data.token)
         // }
+        cookie.remove(TOKEN_KEY)
         cookie.set(TOKEN_KEY, data.token)
       } catch (error) {}
     }
