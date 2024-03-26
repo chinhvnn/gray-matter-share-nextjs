@@ -3,7 +3,8 @@ import axios from 'axios'
 export const TOKEN_KEY = 'auth-token'
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://thichphantich.com/api/v1/',
+  // baseURL: 'http://thichphantich.com/api/v1/',
+  baseURL: 'http://127.0.0.1:3001/api/v1/',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

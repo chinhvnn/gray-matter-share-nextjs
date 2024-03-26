@@ -19,7 +19,7 @@ export default function UserProfile() {
 
   return (
     <div>
-      <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
+      <div className="bg-white shadow overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:px-6 flex items-center">
           <div className="rounded-md overflow-hidden border border-yellow-800 h-full mr-5">
             <Image

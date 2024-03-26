@@ -27,7 +27,7 @@ export default function ShareCode() {
   return (
     <div className="product-detail">
       <section className="flex flex-wrap p-3 border shadow-md bg-white">
-        <div className="image w-full md:w-4/12 xl:w-3/12 mb-3 bg-gray-300 overflow-hidden">
+        <div className="image w-full min-h-52 md:w-4/12 xl:w-3/12 mb-3 bg-gray-300 overflow-hidden">
           {/* <div className="w-80 h-80 bg-gray-300"></div> */}
         </div>
         <div className="product-detail w-full md:w-8/12 xl:w-6/12 sm:pl-8 xl:px-8 mb-3">
@@ -38,20 +38,20 @@ export default function ShareCode() {
           </div>
           <div className="product-detail-rating flex items-center mt-3">
             <RatingStar rating={4} />
-            <div className="download-count flex px-2 py-0.5 ml-8 rounded-md bg-amber-200 font-bold">
+            <div className="download-count flex px-2 py-0.5 ml-8 rounded-md bg-amber-100 font-bold">
               <div className="icon mr-3">
                 <i className="fa-solid fa-download"></i>
               </div>
               <div className="value">0</div>
             </div>
           </div>
-          <div className="cost bg-amber-100 flex justify-between mt-3 p-3">
+          <div className="cost bg-amber-200 flex justify-between mt-3 p-3">
             <div className="">
-              <span>Cost:</span>
-              <span>50000</span>
-              <span>1x = 1000d</span>
+              <span className="font-normal text-sm mr-2">Cost:</span>
+              <span className="text-green-600 font-bold mr-2">50000</span>
+              <span className="text-sm text-gray-400 italic">(1x = 1000d)</span>
             </div>
-            <div className="charge">Charge</div>
+            {/* <div className="charge">Charge</div> */}
           </div>
           <div className="download-product flex justify-between mt-3">
             <div className="download-info">
