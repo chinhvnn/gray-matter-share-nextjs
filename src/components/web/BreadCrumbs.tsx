@@ -57,7 +57,7 @@ export default function BreadCrumbs() {
         </li>
         {breadItems.length > 0 &&
           breadItems.map((item, index, arr) => (
-            <li key={item}>
+            <li key={item + index}>
               <div className="flex items-center">
                 <svg
                   className="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 "

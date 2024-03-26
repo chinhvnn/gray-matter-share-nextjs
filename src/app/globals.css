@@ -18,8 +18,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
+  background: #f0f2f5;
+  /* background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb)); */
   min-height: calc(100vh - 3.5rem);
 }
 
@@ -27,11 +28,14 @@ body {
   min-height: calc(100vh - 3.5rem);
 }
 
-.content_wrapper__auth-loading {
+.content_wrapper__auth-loading,
+.web-content-loading,
+.all-content-loading {
   position: absolute;
+  z-index: 999;
   left: 0;
   right: 0;
-  top: 0;
+  top: -150px;
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;

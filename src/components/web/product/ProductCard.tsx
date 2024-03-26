@@ -60,14 +60,14 @@ export default function ProductCard() {
           </div>
         </div>
         <div
-          className="category px-3 line-clamp-2 text-amber-800 flex-grow cursor-pointer"
+          className="category px-3 line-clamp-2 text-amber-800 flex-grow cursor-pointer hover:underline transition-all"
           onClick={() => router.push('/web/share-code')}
         >
           <i className="fa-solid fa-bookmark"></i>
           <span className="ml-2 font-semibold">React js</span>
         </div>
         <div
-          className="title px-3 line-clamp-2 cursor-pointer"
+          className="title px-3 mt-2 line-clamp-2 cursor-pointer hover:text-blue-800 transition-colors"
           onClick={() => router.push('/web/share-code/123')}
         >
           Source code vip
