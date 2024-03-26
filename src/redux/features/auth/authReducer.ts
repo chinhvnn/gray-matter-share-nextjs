@@ -13,7 +13,7 @@ interface AuthState {
 
 // Define the initial state using that type
 const initialState: AuthState = {
-  isLoading: false,
+  isLoading: true,
   isLoadingLogin: false,
   loginErrMsg: '',
   userLogin: {},
