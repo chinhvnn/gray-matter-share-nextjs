@@ -8,7 +8,7 @@ export default async function WebHome() {
 
   return (
     <div>
-      <section className="bg-white mt-4 p-4">
+      <section className="bg-white p-4">
         <div className="section-title my-3 p-2 text-2xl font-semibold uppercase border-b border-amber-700">
           {dict.section.hot}
         </div>

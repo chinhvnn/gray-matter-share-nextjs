@@ -29,12 +29,8 @@ export default function FixedHeader() {
       type: 'divider',
     },
     {
-      label: <Link href="/user">User</Link>,
+      label: <Link href="/web/user">Profile User</Link>,
       key: '1',
-    },
-    {
-      label: <Link href="/profile">Profile</Link>,
-      key: '2',
     },
     {
       label: <span>Logout</span>,

@@ -26,7 +26,7 @@ export default function ShareCode() {
 
   return (
     <div className="product-detail">
-      <section className="flex flex-wrap mt-4 p-3 border shadow-md bg-white">
+      <section className="flex flex-wrap p-3 border shadow-md bg-white">
         <div className="image w-full md:w-4/12 xl:w-3/12 mb-3 bg-gray-300 overflow-hidden">
           {/* <div className="w-80 h-80 bg-gray-300"></div> */}
         </div>

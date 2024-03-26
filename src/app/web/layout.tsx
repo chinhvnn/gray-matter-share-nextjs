@@ -14,7 +14,7 @@ export default function WebLayout({
       <main className="container mx-auto bg-gray-200 shadow-md p-8 min-h-[calc(100vh-3.5rem-230px)] mt-14 flex flex-col">
         <FixedHeader />
         <BreadCrumbs />
-        <div className="content flex-1">{children}</div>
+        <div className="content mt-5 flex-1">{children}</div>
       </main>
       <Footer />
     </div>

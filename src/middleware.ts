@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { TOKEN_KEY } from './config/axios'
 import { convertCookieFromStringToJson } from './utils/helper'
 
-const privateRoute: string[] = ['/dashboard'] // require authentication
+const privateRoute: string[] = ['/dashboard', '/web/user'] // require authentication
 
 const protectRoute: string[] = [] // require user role
 
