@@ -28,7 +28,7 @@ body {
   min-height: calc(100vh - 3.5rem);
 }
 
-.content_wrapper__auth-loading,
+.auth-loading,
 .web-content-loading,
 .all-content-loading {
   position: absolute;

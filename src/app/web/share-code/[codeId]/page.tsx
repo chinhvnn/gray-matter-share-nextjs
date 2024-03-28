@@ -139,14 +139,14 @@ export default function ShareCode() {
           HOT
         </div>
         <div className="product-list flex flex-wrap">
+          {/* <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard /> */}
         </div>
       </section>
       <Modal

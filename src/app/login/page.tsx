@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [loginErrMsg, setLoginErrMsg] = useState('')
   const authReducer = useAppSelector((state) => state.auth)
 
-  const onSubmitLogin = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(fetchLogin({ email, password }))
   }

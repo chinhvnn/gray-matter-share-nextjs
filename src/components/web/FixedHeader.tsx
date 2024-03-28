@@ -1,20 +1,29 @@
 'use client'
 
 import { Dropdown, MenuProps, Space } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { fetchLogout } from '@/redux/features/auth/authThunk'
+import { useRouter } from 'next/navigation'
 
-export default function FixedHeader() {
+export default function FixedHeader({ params }: any) {
   const dispatch = useAppDispatch()
+  const router = useRouter()
   const authReducer = useAppSelector((state) => state.auth)
 
   const onLogout = () => {
     dispatch(fetchLogout())
   }
+
+  useEffect(() => {
+    if (!authReducer.userLogin.id) {
+      router.refresh()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authReducer.userLogin.id])
 
   const items: MenuProps['items'] = [
     {
@@ -76,7 +85,7 @@ export default function FixedHeader() {
             </div>
           </div>
         </div>
-        {authReducer.userLogin?._id ? (
+        {params?.authUser?._id ? (
           <div className="user flex">
             <div className="recharge mr-5 flex items-center bg-amber-400 rounded-lg px-2 cursor-pointer">
               <span>Charge</span>
@@ -89,9 +98,9 @@ export default function FixedHeader() {
                 overlayStyle={{ minWidth: 150 }}
               >
                 <div className="h-10 w-10 rounded-full bg-amber-500 cursor-pointer overflow-hidden">
-                  {authReducer.userLogin?.profileImgUrl && (
+                  {params?.authUser?.profileImgUrl && (
                     <Image
-                      src={authReducer.userLogin?.profileImgUrl}
+                      src={params?.authUser?.profileImgUrl}
                       alt="profile-img"
                       width={40}
                       height={40}

@@ -22,7 +22,9 @@ axiosInstance.interceptors.request.use(
       //   token = `${window.localStorage.getItem(TOKEN_KEY)}`
       // }
       token = cookie.get(TOKEN_KEY)
-    } catch (error) {}
+    } catch (error) {
+      console.log('111 error', error)
+    }
     if (config?.headers) {
       config.headers.Authorization = token
     }
@@ -46,8 +48,9 @@ axiosInstance.interceptors.response.use(
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log('axios error response', error)
+    // console.log('axios error response', error)
     // Promise.reject(error);
-    return error
+    throw { error: error, message: 'Network errors. Please try again later!' }
+    // return error
   },
 )

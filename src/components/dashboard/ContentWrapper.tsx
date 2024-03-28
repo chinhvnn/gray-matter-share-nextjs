@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { fetchAuth } from '@/redux/features/auth/authThunk'
-import Loading from './Loading'
+import Loading from '../Loading'
 
 export default function ContentWrapper({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch()
@@ -15,9 +15,9 @@ export default function ContentWrapper({ children }: { children: React.ReactNode
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper-dashboard">
       {authReducer.isLoading ? (
-        <div className="content_wrapper__auth-loading">
+        <div className="auth-loading">
           <Loading />
         </div>
       ) : (

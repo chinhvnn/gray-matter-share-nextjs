@@ -13,7 +13,8 @@ export const AuthAction = {
 export const fetchLogin = createAsyncThunk(
   AuthAction.fetchLogin,
   async ({ email, password }: any) => {
-    const { data } = await authService.login({ email, password })
+    const data: any = await authService.login({ email, password })
+
     if (data.token) {
       try {
         // if (typeof window !== undefined) {
@@ -28,8 +29,8 @@ export const fetchLogin = createAsyncThunk(
 )
 
 export const fetchAuth = createAsyncThunk(AuthAction.fetchAuth, async () => {
-  const { data } = await authService.getAuthUser()
-  return data.data
+  // const { data } = await authService.getAuthUser()
+  // return data.data
 })
 
 export const fetchLogout = createAsyncThunk(AuthAction.fetchLogout, async () => {
